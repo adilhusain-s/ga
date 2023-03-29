@@ -11,6 +11,8 @@ jobs:
         run: |
           uname -a
           arch
+          sudo cat /etc/group
+
           echo $USER
   power_job:
     name: Power Job
@@ -21,3 +23,5 @@ jobs:
           uname -a
           arch
           echo $USER
+          sudo cat /etc/group
+
