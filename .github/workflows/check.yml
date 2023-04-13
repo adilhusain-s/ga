@@ -16,7 +16,7 @@ jobs:
           echo $USER
   power_job:
     name: Power Job
-    runs-on: ubuntu-20.04-ppc64le
+    runs-on: ubuntu-18.04-ppc64le
     steps:
       - name: Run commands
         run: |
@@ -24,4 +24,3 @@ jobs:
           arch
           echo $USER
           sudo cat /etc/group
-
