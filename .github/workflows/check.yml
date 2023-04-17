@@ -3,9 +3,12 @@ name: Sample Workflow
 on: [workflow_dispatch, push]
 
 jobs:
-  amd_job:
-    name: Amd Job
-    runs-on: ubuntu-latest
+  test_job:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-18.04-ppc64le, ubuntu-20.04-ppc64le]
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }}
     steps:
       - name: Run commands
         run: |
