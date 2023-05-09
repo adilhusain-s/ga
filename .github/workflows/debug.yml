@@ -1,0 +1,19 @@
+name: Sample debug Workflow
+
+on: [workflow_dispatch, push]
+
+jobs:
+  debug_job:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04-ppc64le-dbg]
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }}
+    steps:
+      - name: Run commands
+        run: |
+          uname -a
+          arch
+          sudo cat /etc/group
+
+          echo $USER
