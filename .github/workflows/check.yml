@@ -9,6 +9,7 @@ jobs:
         os: [ubuntu-latest, ubuntu-20.04-ppc64le]
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.os }}
+    # steps to run check
     steps:
       - name: Run commands
         run: |
@@ -17,3 +18,4 @@ jobs:
           sudo cat /etc/group
 
           echo $USER
+          
