@@ -14,6 +14,6 @@ jobs:
         run: |
           uname -a
           arch
-          sudo cat /etc/group
-
-          echo $USER
+          echo "sleeping for 5 minutes..."
+          sleep 5m
+          echo "wake up..."
