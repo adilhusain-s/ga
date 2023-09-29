@@ -1,4 +1,4 @@
-name: Sample Workflow
+name: list vm details
 
 on: [workflow_dispatch, push, pull_request]
 
@@ -6,10 +6,16 @@ jobs:
   test_job:
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-20.04-ppc64le]
+        os: [ubuntu-latest, ubuntu-20.04]
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.os }}
     steps:
+      - name: list  vm details
+        run: |
+          nproc   
+          df -H 
+          free -H
+
       - name: Run commands
         run: |
           uname -a
@@ -17,3 +23,13 @@ jobs:
           echo "sleeping for 5 minutes..."
           sleep 5m
           echo "wake up..."
+      - name: List Installed Packages
+        run: |
+          dpkg-query -W -f='${Package}\n' > installed-packages.txt
+        shell: bash
+
+      - name: Upload Installed Packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: installed-packages
+          path: installed-packages.txt
