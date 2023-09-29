@@ -14,8 +14,23 @@ jobs:
         run: |
           nproc   
           df -H 
-          free -H
+          free -h
 
+      - name: Get System Information
+        run: |
+          lscpu > cpu-info.txt
+          free -h > memory-info.txt
+          df -h > disk-info.txt
+        shell: bash
+
+      - name: Upload System Information
+        uses: actions/upload-artifact@v2
+        with:
+          name: system-info
+          path: |
+            cpu-info.txt
+            memory-info.txt
+            disk-info.txt
       - name: Run commands
         run: |
           uname -a
